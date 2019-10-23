@@ -17,44 +17,79 @@ const computerPlay = () => {
   }
   return computerChoice;
 };
+
+/* this is the main function that completes a 5 round game of Rock, Paper 
+
+Scissors, keeps the scores of each player, validates the user input and declares 
+
+a winner */
+
 const game = () => {
   let playerScore = 0;
   let computerScore = 0;
+
+/*this function adds a point to the player score after a victory */
   const win = () => {
     playerScore++;
     console.log(`Player Score: ${playerScore}`);
     console.log(`Computer Score: ${computerScore}`);
   };
+
+/*this function adds a point to the computer score after a player loss */
   const lose = () => {
     computerScore++;
     console.log(`Player Score: ${playerScore}`);
     console.log(`Computer Score: ${computerScore}`);
   };
 
+/* this function validates the user Input */
+const validate = (userInput) => {
+userInput = prompt("Rock, Paper or Scissors?");
+let lowerCaseUserInput = userInput.toLowerCase();
+let firstLetterCapitalized = lowerCaseUserInput.charAt(0).toUpperCase();
+let restOfWord = lowerCaseUserInput.slice(1);
+let validatedInput = firstLetterCapitalized + restOfWord;
+return validatedInput;
+};
+
+/*this for loop determines the rounds played and declares the outcome of each 
+
+round by comparing the randomized computer value with the user input */
+
   for (let i = 1; i < 6; i++) {
     console.log(`Round: ${i}`);
-    const oneRound = (computerSelection, playerSelection) => {
+    const oneRound = (computerSelection, validatedPlayerSelection) => {
       computerSelection = computerPlay();
       console.log('Computer choice complete!');
-      playerSelection = prompt('Rock, Paper or Scissors?');
-      let lowerCasePlayerSelection = playerSelection.toLowerCase();
-      const validatedPlayerSelection = lowerCasePlayerSelection + playerSelection.slice(1);
-      if ((computerSelection === 'Paper') && (validatedPlayerSelection === 'Rock')) {
+      validatedPlayerSelection = validate();
+      if ((computerSelection === 'Paper') && (validatedPlayerSelection === 
+
+'Rock')) {
         alert('Paper covers Rock! Computer wins 1 point!');
         lose();
-      } else if ((computerSelection === 'Rock') && (validatedPlayerSelection === 'Scissors')) {
+      } else if ((computerSelection === 'Rock') && (validatedPlayerSelection === 
+
+'Scissors')) {
         alert('Rock breaks Scissors! Computer wins 1 point!');
         lose();
-      } else if ((computerSelection === 'Scissors') && (validatedPlayerSelection === 'Paper')) {
+      } else if ((computerSelection === 'Scissors') && (validatedPlayerSelection 
+
+=== 'Paper')) {
         alert('Scissors cuts Paper! Computer wins 1 point!');
         lose();
-      } else if ((computerSelection === 'Paper') && (validatedPlayerSelection === 'Scissors')) {
+      } else if ((computerSelection === 'Paper') && (validatedPlayerSelection 
+
+=== 'Scissors')) {
         alert('Scissors cuts Paper! You win 1 point!');
         win();
-      } else if ((computerSelection === 'Rock') && (validatedPlayerSelection === 'Paper')) {
+      } else if ((computerSelection === 'Rock') && (validatedPlayerSelection === 
+
+'Paper')) {
         alert('Paper covers Rock! You win 1 point!');
         win();
-      } else if ((computerSelection === 'Scissors') && (validatedPlayerSelection === 'Rock')) {
+      } else if ((computerSelection === 'Scissors') && (validatedPlayerSelection 
+
+=== 'Rock')) {
         alert('Rock breaks Scissors! You win 1 point!');
         win();
       } else if (computerSelection === validatedPlayerSelection) {
@@ -65,7 +100,9 @@ const game = () => {
     oneRound();
   }
   console.log(`Final Score: Player: ${playerScore} Computer: ${computerScore}`);
-  if (playerScore > computerScore) { console.log("You win the game!"); } else { console.log("Computer wins the game!"); }
+  if (playerScore > computerScore) { console.log("You win the game!"); } else { 
+
+console.log("Computer wins the game!"); }
 };
 
 game();
