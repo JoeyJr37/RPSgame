@@ -3,16 +3,23 @@
 /* eslint-disable no-alert */
 /* eslint-disable quotes */
 
-/* Button to reveal game */
-let gamePlayButton = document.querySelector("#gamePlayButton");
-let gameButton = document.querySelector("#game");
+/**
+ * Document Query Selectors
+ */
+const gamePlayButton = document.querySelector("#gamePlayButton");
+const gameButton = document.querySelector("#game");
+const playerDisplayScore = document.querySelector("#playerScore");
+const computerDisplayScore = document.querySelector("#computerScore");
+const rockButton = document.querySelector("#rockButton");
+const paperButton = document.querySelector("#paperButton");
+const scissorButton = document.querySelector("#scissorButton");
+
+
+
 const revealGame = () => {
   gameButton.style.visibility = "visible";
 };
 gamePlayButton.addEventListener("click", revealGame);
-
-let playerDisplayScore = document.querySelector("#playerScore");
-let computerDisplayScore = document.querySelector("#computerScore");
 
 /* set playerScore and computerScore to 0 */
 playerDisplayScore.value = 1;
@@ -47,13 +54,10 @@ const scissorChoice = () => {
 };
 
 /* These are buttons for RPS game v2 */
-const rockButton = document.querySelector("#rockButton");
 rockButton.addEventListener("click", rockChoice);
 
-const paperButton = document.querySelector("#paperButton");
 paperButton.addEventListener("click", paperChoice);
 
-const scissorButton = document.querySelector("#scissorButton");
 scissorButton.addEventListener("click", scissorChoice);
 
 const computerPlay = () => {
