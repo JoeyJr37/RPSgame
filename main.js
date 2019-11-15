@@ -30,9 +30,15 @@ const revealGame = () => {
  * Determine Winner of Game
  */
 const determineWinner = () => {
-  if (player_score === 5) {alert("Player 1 wins!");}
-  else if (computer_score === 5) {alert ("Computer wins!");}
-  else {alert(`Player has ${player_score} and Computer has ${computer_score}`);};
+  if (player_score === 5) {
+    alert("Player 1 wins!");
+  }
+  else if (computer_score === 5) {
+    alert ("Computer wins!");
+  }
+  else {
+    alert(`Player has ${player_score} and Computer has ${computer_score}`);
+  };
 };
 
 /* function that sets validatedPlayerSelection to rock */
