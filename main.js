@@ -14,23 +14,32 @@ const rockButton = document.querySelector("#rockButton");
 const paperButton = document.querySelector("#paperButton");
 const scissorButton = document.querySelector("#scissorButton");
 
+let computer_score = 0;
+let player_score = 0;
 
-
+/**
+ * Reveals Game Board
+ */
 const revealGame = () => {
   gameButton.style.visibility = "visible";
+  computerDisplayScore.innerHTML = computer_score;
+  playerDisplayScore.innerHTML = player_score;
 };
-gamePlayButton.addEventListener("click", revealGame);
 
-/* set playerScore and computerScore to 0 */
-playerDisplayScore.value = 1;
-computerDisplayScore.value = 1;
-
-/* function to determine winner (first to 5 points) */
+/**
+ * Determine Winner of Game
+ */
 const determineWinner = () => {
-  if (playerDisplayScore.textContent === "5") {alert("Player 1 wins!");}
-  else if (computerDisplayScore.textContent === "5") {alert ("Computer wins!");}
-  else {alert(`Player has ${playerDisplayScore.value - 1} and Computer has ${computerDisplayScore.value - 1}`);};
+  if (player_score === 5) {
+    alert("Player 1 wins!");
+  }
+  else if (computer_score === 5) {
+    alert ("Computer wins!");
+  }
+  else {
+    alert(`Player has ${player_score} and Computer has ${computer_score}`);
   };
+};
 
 /* function that sets validatedPlayerSelection to rock */
 const rockChoice = () => {
@@ -53,13 +62,6 @@ const scissorChoice = () => {
   determineWinner();
 };
 
-/* These are buttons for RPS game v2 */
-rockButton.addEventListener("click", rockChoice);
-
-paperButton.addEventListener("click", paperChoice);
-
-scissorButton.addEventListener("click", scissorChoice);
-
 const computerPlay = () => {
   const computerValue = Math.floor((Math.random()) * 3);
   let computerChoice;
@@ -78,20 +80,21 @@ const computerPlay = () => {
 
 /*this function adds a point to the player score after a victory */
 const win = () => {
-  /* playerScore++;
-  console.log(`Player Score: ${playerScore}`);
-  console.log(`Computer Score: ${computerScore}`); */
-  playerDisplayScore.textContent = playerDisplayScore.value++;
+  player_score += 1;
+  playerDisplayScore.textContent = player_score;
 };
 
 /*this function adds a point to the computer score after a player loss */
 const lose = () => {
-  /* computerScore++;
-  console.log(`Player Score: ${playerScore}`);
-  console.log(`Computer Score: ${computerScore}`); */
-  computerDisplayScore.textContent = computerDisplayScore.value++;
+  computer_score+= 1;
+  computerDisplayScore.textContent = computer_score;
 };
 
+/**
+ * Play One Round
+ * @param {String} computerSelection 
+ * @param {String} validatedPlayerSelection 
+ */
 const oneRound = (computerSelection, validatedPlayerSelection) => {
   computerSelection = computerPlay();
   if ((computerSelection === 'Paper') && (validatedPlayerSelection === 'Rock')) {
@@ -117,3 +120,10 @@ const oneRound = (computerSelection, validatedPlayerSelection) => {
   } else { alert('Error! Please try again!'); }
 };
 
+/**
+ * Event Listeners
+ */
+gamePlayButton.addEventListener("click", revealGame);
+rockButton.addEventListener("click", rockChoice);
+paperButton.addEventListener("click", paperChoice);
+scissorButton.addEventListener("click", scissorChoice);
