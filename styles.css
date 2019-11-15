@@ -1,3 +1,7 @@
 #game {
     visibility: hidden;
 }
+
+#newGameButton {
+   visibility: hidden;
+}
