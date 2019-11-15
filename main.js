@@ -22,6 +22,8 @@ let player_score = 0;
  */
 const revealGame = () => {
   gameButton.style.visibility = "visible";
+  computerDisplayScore.innerHTML = computer_score;
+  playerDisplayScore.innerHTML = player_score;
 };
 
 /**
